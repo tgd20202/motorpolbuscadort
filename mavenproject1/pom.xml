@@ -57,16 +57,11 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-            
-            <plugin>
-                <groupId>com.heroku.sdk</groupId>
-                <artifactId>heroku-maven-plugin</artifactId>
-                <version>3.0.4</version>
-                <configuration>
-                    <appName>${heroku.appName}</appName>
-                </configuration>
+            <plugin>        
+                <groupId>com.heroku.sdk</groupId>         
+                <artifactId>heroku-maven-plugin</artifactId>         
+                <version>3.0.3</version>       
             </plugin>
-    
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
