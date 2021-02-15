@@ -12,25 +12,31 @@ package Persistencia;
 public class daoHelperUsuarios {
      public static String insertarUsuarios(){
        StringBuilder sb= new StringBuilder();
-       sb.append("insert into editores values(?,?,?,?)");
+       sb.append("insert into public.editores (nombre,rol,mail)  values(?,?,?)");
        return sb.toString();
     }
     
     public static String eliminarUsuarios(){
         StringBuilder sb = new StringBuilder();
-        sb.append("delete editores where id=?");
+        sb.append("delete  from public.editores where id=?");
         return sb.toString();
     }
     
     public static String buscarUsuarios(){
         StringBuilder sb = new StringBuilder();
-        sb.append("select * from editores where id=?");
+        sb.append("select * from public.editores where id=?");
         return sb.toString();
     }
-    public static String actulixarUsuarios(){
+    public static String actulizarUsuarios(){
         StringBuilder sb = new StringBuilder();
-        sb.append("update editores SET mail=?,nombre=?,rol=?"
+        sb.append("update public.editores SET mail=?,nombre=?,rol=?"
                 + "WHERE id=?");
+        return sb.toString();
+    }
+    
+    public static String buscarRegistroUsuarioActualizar(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("select * from public.editores where id=?");
         return sb.toString();
     }
 }

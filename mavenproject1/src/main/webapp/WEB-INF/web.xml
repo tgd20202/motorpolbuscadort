@@ -5,56 +5,72 @@
         <servlet-class>Negocio.loginUsuario</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>negocioHistorial</servlet-name>
-        <servlet-class>Negocio.negocioHistorial</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>negocioUsuario</servlet-name>
-        <servlet-class>Negocio.negocioUsuario</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>logginGmail</servlet-name>
         <servlet-class>Negocio.logginGmail</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>historial</servlet-name>
-        <servlet-class>Negocio.historial</servlet-class>
+        <servlet-name>eliminarOpenJournal</servlet-name>
+        <servlet-class>Negocio.eliminarOpenJournal</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>crudOpenJournal</servlet-name>
-        <servlet-class>Negocio.crudOpenJournal</servlet-class>
+        <servlet-name>logOut</servlet-name>
+        <servlet-class>Negocio.logOut</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>crudAdministrado</servlet-name>
-        <servlet-class>Negocio.crudAdministrado</servlet-class>
+        <servlet-name>saveOpenJournal</servlet-name>
+        <servlet-class>Negocio.saveOpenJournal</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>saveUsuario</servlet-name>
+        <servlet-class>Negocio.saveUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eliminarUsuario</servlet-name>
+        <servlet-class>Negocio.eliminarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>saveUrls</servlet-name>
+        <servlet-class>Negocio.saveUrls</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eliminarHistorial</servlet-name>
+        <servlet-class>Negocio.eliminarHistorial</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>loginUsuario</servlet-name>
         <url-pattern>/loginUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>negocioHistorial</servlet-name>
-        <url-pattern>/negocioHistorial</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>negocioUsuario</servlet-name>
-        <url-pattern>/negocioUsuario</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>logginGmail</servlet-name>
         <url-pattern>/logginGmail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>historial</servlet-name>
-        <url-pattern>/historial</url-pattern>
+        <servlet-name>eliminarOpenJournal</servlet-name>
+        <url-pattern>/eliminarOpenJournal</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>crudOpenJournal</servlet-name>
-        <url-pattern>/crudOpenJournal</url-pattern>
+        <servlet-name>logOut</servlet-name>
+        <url-pattern>/logOut</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>crudAdministrado</servlet-name>
-        <url-pattern>/crudAdministrado</url-pattern>
+        <servlet-name>saveOpenJournal</servlet-name>
+        <url-pattern>/saveOpenJournal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>saveUsuario</servlet-name>
+        <url-pattern>/saveUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eliminarUsuario</servlet-name>
+        <url-pattern>/eliminarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>saveUrls</servlet-name>
+        <url-pattern>/saveUrls</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eliminarHistorial</servlet-name>
+        <url-pattern>/eliminarHistorial</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

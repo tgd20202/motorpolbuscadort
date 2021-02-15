@@ -5,14 +5,11 @@
  */
 package Negocio;
 
-import Entidades.usuarios;
+import Persistencia.daoHistoria;
+import Persistencia.daoOpenJournal;
+import Persistencia.daoUsuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +18,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author jorop
+ * @author pc
  */
-public class logginGmail extends HttpServlet {
+public class saveUrls extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,43 +32,56 @@ public class logginGmail extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-             String gmail = request.getParameter("correo");
-             System.out.println("entro al servlet de correo y este es el correo:"
-             +gmail);
-            boolean login = false;
-            ArrayList<usuarios> users = new ArrayList<usuarios>();
-            negocioLogin aux = new negocioLogin();
-            ResultSet rs = aux.getUsuarios();
+            int aux1 = 0;
+            int aux2 = 0;
+            int aux3 = 0;
+            if (request.getParameterValues("historial") != null) {
+                String urls[] = request.getParameterValues("historial");
+                String titulosAux[] = request.getParameterValues("titulo");
 
-            while (rs.next()) {
+                String urlsAux[] = request.getParameterValues("historialAux");
+                String titulos[] = new String[urls.length];
 
-                users.add(new usuarios(rs.getInt("id"), rs.getString("mail"), rs.getString("nombre"), rs.getString("rol")));
-            }
+                String titulosHlep[] = new String[]{"google.com", "nani.com", "test.com"};
 
-            String rol="";
-            for (int i = 0; i < users.size(); i++) {
-                usuarios auxUsuarios = new usuarios();
-                auxUsuarios = users.get(i);
-                if (auxUsuarios.getMail().equals(gmail)) {
-                    rol=auxUsuarios.getRol();
-                    login = true;
+                String cosas[] = new String[]{"google.com", "nani.com", "test.com", "other.com"};
+
+                ////Ligar las urls a los titulos
+                for (String linkMain : urlsAux) {
+                    aux2=0;
+                    for (String linkOther : urls) {
+                        if (linkMain.equals(linkOther)) {
+                            titulos[aux3] = titulosAux[aux1];
+                            aux3++;
+                            break;
+                        }
+                        aux2++;
+                    }
+                    aux1++;
+                }
+                
+                
+
+                ////
+                HttpSession sesion = request.getSession();
+                String usuario = sesion.getAttribute("usuario").toString();
+                daoHistoria dao = new daoHistoria();
+                int aux = 0;
+                for (String a : urls) {
+                    System.out.println("titulos obtenidos:");
+                    System.out.println(titulos[aux]);
+                    System.out.println("urls obtenina");
+                    System.out.println(urls[aux]);
+                    dao.insertRegistroOpenJournal(usuario, a, titulos[aux]);
+                    aux++;
                 }
             }
-            if (login) {
-                HttpSession sesion = request.getSession(true);
-                sesion.setAttribute("usuario", gmail);
-                sesion.setAttribute("rol", rol);
-                sesion.setAttribute("booleanLogg", "l");
-                response.sendRedirect("index.jsp");
-            }else{
-                request.setAttribute("mensaje", "No existe tal usuario");
-                request.getRequestDispatcher("index.jsp").forward(request, response); 
-            
-            }
+
+            response.sendRedirect("historial.jsp");
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
             out.println("<html>");
@@ -95,11 +105,7 @@ public class logginGmail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(logginGmail.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -113,11 +119,7 @@ public class logginGmail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(logginGmail.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

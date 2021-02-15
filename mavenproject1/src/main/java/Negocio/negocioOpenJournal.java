@@ -6,11 +6,10 @@
 package Negocio;
 
 import Entidades.openJournal;
-import Entidades.usuarios;
 import Persistencia.daoOpenJournal;
-import Persistencia.daoUsuarios;
 import Utilidades.Conexion;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,14 +18,13 @@ import java.sql.Statement;
  *
  * @author pc
  */
-public class negocioUsuario {
-
-    daoUsuarios dao = new daoUsuarios();
-
-    public ResultSet getUsuarios() {
-        String sql = "select * from editores ";
+public class negocioOpenJournal {
+    daoOpenJournal dao=new daoOpenJournal();
+    
+     public ResultSet getOpenJournal() {
+    String sql = "select * from openjournal ";
         Conexion cone = new Conexion().conectar();
-
+        
         Statement st;
         try {
             st = cone.getConexion().createStatement();
@@ -37,18 +35,19 @@ public class negocioUsuario {
             return null;
         }
     }
-
-    public usuarios buscarActualizar(int id) {
+     
+     public int eliminarRegistroOpenJournal(int id) {
+        return dao.eliminarOpenJournal(id);
+    }
+     
+     
+     public openJournal buscarActualizar(int id) {
         Conexion b = new Conexion();
         Connection c;
         b = b.conectar();
         c = b.getConexion();
-        usuarios hor = dao.buscarRegistroUsuarios(c, id);
+        openJournal hor = dao.buscarRegistroOpenJournal(c, id);
         return hor;
-    }
-    
-     public int eliminarRegistroUsuario(int id) {
-        return dao.eliminarUsuario(id);
     }
      
 }

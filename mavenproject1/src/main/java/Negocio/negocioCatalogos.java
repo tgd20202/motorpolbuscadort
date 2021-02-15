@@ -5,8 +5,6 @@
  */
 package Negocio;
 
-import Persistencia.daoHistoria;
-import Persistencia.daoUsuarios;
 import Utilidades.Conexion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,13 +14,11 @@ import java.sql.Statement;
  *
  * @author pc
  */
-public class negocioHistorial {
-    daoHistoria dao = new daoHistoria();
-
-    public ResultSet getUrls() {
-        String sql = "select * from public.historial";
+public class negocioCatalogos {
+    public ResultSet getCatalogos() {
+    String sql = "select * from catalogos ";
         Conexion cone = new Conexion().conectar();
-
+        
         Statement st;
         try {
             st = cone.getConexion().createStatement();
@@ -33,9 +29,4 @@ public class negocioHistorial {
             return null;
         }
     }
-    
-    public int eliminarRegistroUrl(int id,String usuario) {
-        return dao.eliminarUrl(id,usuario);
-    }
-    
 }

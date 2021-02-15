@@ -5,14 +5,10 @@
  */
 package Negocio;
 
-import Entidades.usuarios;
+import Persistencia.daoOpenJournal;
+import Persistencia.daoUsuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +17,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author jorop
+ * @author pc
  */
-public class logginGmail extends HttpServlet {
+public class saveUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,43 +31,32 @@ public class logginGmail extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-             String gmail = request.getParameter("correo");
-             System.out.println("entro al servlet de correo y este es el correo:"
-             +gmail);
-            boolean login = false;
-            ArrayList<usuarios> users = new ArrayList<usuarios>();
-            negocioLogin aux = new negocioLogin();
-            ResultSet rs = aux.getUsuarios();
-
-            while (rs.next()) {
-
-                users.add(new usuarios(rs.getInt("id"), rs.getString("mail"), rs.getString("nombre"), rs.getString("rol")));
-            }
-
-            String rol="";
-            for (int i = 0; i < users.size(); i++) {
-                usuarios auxUsuarios = new usuarios();
-                auxUsuarios = users.get(i);
-                if (auxUsuarios.getMail().equals(gmail)) {
-                    rol=auxUsuarios.getRol();
-                    login = true;
-                }
-            }
-            if (login) {
-                HttpSession sesion = request.getSession(true);
-                sesion.setAttribute("usuario", gmail);
-                sesion.setAttribute("rol", rol);
-                sesion.setAttribute("booleanLogg", "l");
-                response.sendRedirect("index.jsp");
-            }else{
-                request.setAttribute("mensaje", "No existe tal usuario");
-                request.getRequestDispatcher("index.jsp").forward(request, response); 
+           daoUsuarios dao = new daoUsuarios();
+            HttpSession sesion = request.getSession();
+            String usuario = (String) sesion.getAttribute("usuario");
+            String rol = request.getParameter("rol").toString().trim();
+            String nombre = request.getParameter("nombre").toString().trim();
+            String ids = request.getParameter("idUsuarios").toString();
+            String mail=request.getParameter("email").toString();
             
+            int id=0;
+            if (!ids.equals("")) {
+                 id= Integer.parseInt(ids);
             }
+
+            System.out.println("id para actualizar en sevlet:" + id);
+
+            System.out.println("usuario para actualizar:" + mail);
+            System.out.println("rol para actualizar:" + rol);
+
+            String mensaje = dao.insertRegistrousuario(mail, rol, nombre, id);
+            System.out.println("mensaje del servlet de openjournal:" + mensaje);
+            request.setAttribute("mensaje", mensaje);
+            request.getRequestDispatcher("crudEditores.jsp").forward(request, response);
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
             out.println("<html>");
@@ -95,11 +80,7 @@ public class logginGmail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(logginGmail.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -113,11 +94,7 @@ public class logginGmail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(logginGmail.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

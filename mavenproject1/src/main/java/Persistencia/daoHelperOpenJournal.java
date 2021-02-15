@@ -12,25 +12,37 @@ package Persistencia;
 public class daoHelperOpenJournal {
      public static String insertarOpenJournal(){
        StringBuilder sb= new StringBuilder();
-       sb.append("insert into openjournal values(?,?,?,?)");
+       sb.append("insert into public.openjournal (nombre,url,usuario)  values(?,?,?)");
        return sb.toString();
     }
     
     public static String eliminarOpenJournal(){
         StringBuilder sb = new StringBuilder();
-        sb.append("delete openjournal where nombre=?");
+        sb.append("delete from public.openjournal where idopenjournal=?");
         return sb.toString();
     }
     
     public static String buscarOpenJournal(){
         StringBuilder sb = new StringBuilder();
-        sb.append("select * from openjournal where nombre=?");
+        sb.append("select * from public.openjournal where idopenjournal=?");
         return sb.toString();
     }
-    public static String actulixarOpenJournal(){
+    public static String buscarOpenJournalValidacion(){
         StringBuilder sb = new StringBuilder();
-        sb.append("update openjournal SET url=?,nombre=?,header=?,usuario=?,"
-                + "WHERE nombre=?");
+        sb.append("select * from public.openjournal where idopenjournal=?");
+        return sb.toString();
+    }
+    
+    public static String buscarRegistroOpenJournalActualizar(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("select * from public.openjournal where idopenjournal=?");
+        return sb.toString();
+    }
+    
+    public static String actulizarOpenJournal(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("update public.openjournal SET url=?,nombre=?,usuario=? "
+                + "WHERE idopenjournal=?");
         return sb.toString();
     }
 }

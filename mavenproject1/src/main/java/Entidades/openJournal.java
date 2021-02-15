@@ -10,10 +10,10 @@ package Entidades;
  * @author jorop
  */
 public class openJournal {
-    private int id,usuario;
+    private int id;
     private String nombre;
     private String url;
-    private String header;
+    private String usuario;
 
     public int getId() {
         return id;
@@ -23,11 +23,11 @@ public class openJournal {
         this.id = id;
     }
 
-    public int getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(int usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
@@ -47,13 +47,6 @@ public class openJournal {
         this.url = url;
     }
 
-    public String getHeader() {
-        return header;
-    }
-
-    public void setHeader(String header) {
-        this.header = header;
-    }
     
     
     

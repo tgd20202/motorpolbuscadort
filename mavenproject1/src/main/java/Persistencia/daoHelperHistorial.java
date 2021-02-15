@@ -12,7 +12,7 @@ package Persistencia;
 public class daoHelperHistorial {
      public static String insertarHistorial(){
        StringBuilder sb= new StringBuilder();
-       sb.append("insert into historial values(?,?,?)");
+       sb.append("insert into public.historial (usuario,url,titulo) values(?,?,?)");
        return sb.toString();
     }
     
@@ -20,8 +20,21 @@ public class daoHelperHistorial {
     
     public static String buscarHistorial(){
         StringBuilder sb = new StringBuilder();
-        sb.append("select * from historial where usuario=?");
+        sb.append("select * from public.historial where usuario=?");
+        return sb.toString();
+    }
+    
+    public static String buscarHistorialInsertar(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("select * from public.historial where url=? AND usuario=?");
         return sb.toString();
     }
    
+    
+     public static String eliminarUrl(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("delete  from public.historial where idhistorial=? AND usuario=?");
+        return sb.toString();
+    }
+    
 }
