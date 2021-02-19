@@ -106,7 +106,7 @@ public class daoUsuarios {
             co.conectar();
             con = co.getConexion();
 
-            PreparedStatement cl = con.prepareStatement(daoHelperOpenJournal.buscarOpenJournalValidacion());
+            PreparedStatement cl = con.prepareStatement(daoHelperUsuarios.buscarRegistroUsuarioActualizar());
             cl.setInt(1, id);
             ResultSet r = cl.executeQuery();
             while (r.next()) {

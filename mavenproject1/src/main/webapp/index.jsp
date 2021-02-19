@@ -18,7 +18,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <link href="./css/index.css" rel="stylesheet">
         <link href="./css/main.css" rel="stylesheet">
-        <title>BuscadotT</title>
+        <title>BuscadorT</title>
     </head>
     <body>
         <%
@@ -112,7 +112,11 @@
 
 
                 %>
-                <h1><%=mensaje%></h1>
+                
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong><%=mensaje%></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 <%
                     }
                 %>
@@ -290,7 +294,7 @@
         <%if (request.getParameter("b") == null) {%>
         <header class="bg-success text-center py-5 mb-4">
             <div class="container">
-                <p class="font-weight-light text-white"><b>En este motor de busqueda de articulos y catálogos publicados podra encontrar información por autor (ramiro suarez ), por palabra clave(informática) y por correo(ejemplo@gmail.com)</b></p>
+                <p class="font-weight-light text-white"><b>En este motor de búsqueda de artículos y catálogos publicados podrá encontrar información por autor (Ramiro Suarez ), por palabra clave(Informática) y por correo(ejemplo@gmail.com)</b></p>
             </div>
         </header>
 
@@ -303,7 +307,7 @@
                         <img src="./img/busqueda.jpg" class="card-img-top" alt="Imagen aun no cargada">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-0">Búsquedas</h5>
-                            <div class="card-text text-black-50">Busqueda en catálogos, Google academics, OJS</div>
+                            <div class="card-text text-black-50">Búsqueda en catálogos, Google academics, OJS</div>
                         </div>
                     </div>
                 </div>
@@ -313,7 +317,7 @@
                         <img src="./img/ojs.jpg" class="card-img-top" alt="Imagen aun no cargada">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-0">OJS</h5>
-                            <div class="card-text text-black-50">Agrega las OJS que desees para las busquedas</div>
+                            <div class="card-text text-black-50">Agrega las OJS que desees para las búsquedas</div>
                         </div>
                     </div>
                 </div>
@@ -323,7 +327,7 @@
                         <img src="./img/favoritos.jpg" class="card-img-top" alt="Imagen aun no cargada">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-0">Favoritos</h5>
-                            <div class="card-text text-black-50">Consulta las busquedas que guardas como favoritas</div>
+                            <div class="card-text text-black-50">Consulta las búsquedas que guardas como favoritas</div>
                         </div>
                     </div>
                 </div>
@@ -349,6 +353,10 @@
 </body>
 
 <script>
+                var alertList = document.querySelectorAll('.alert')
+                alertList.forEach(function (alert) {
+                    new bootstrap.Alert(alert)
+                })
 
                 var clicked = false;//Global Variable
                 function ClickLogin()

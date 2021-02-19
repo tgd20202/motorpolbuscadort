@@ -68,7 +68,7 @@ public class loginUsuario extends HttpServlet {
             //      HttpURLConnection conection = (HttpURLConnection) getRequest.openConnection();
             HttpURLConnection conection = (HttpURLConnection) getRequestAcademics.openConnection();
             conection.setRequestMethod("GET");
-//            conection.setConnectTimeout(10000);
+            conection.setConnectTimeout(1000);
             int responseCode = conection.getResponseCode();
             StringBuffer respuesta = null;
             if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -108,7 +108,7 @@ public class loginUsuario extends HttpServlet {
 
                 conection = (HttpURLConnection) getRequestOpenJournal.openConnection();
                 conection.setRequestMethod("GET");
-//                conection.setConnectTimeout(6000);
+                conection.setConnectTimeout(1000);
 
                 responseCode = conection.getResponseCode();
                 respuesta = null;
@@ -142,7 +142,7 @@ public class loginUsuario extends HttpServlet {
 
             conection = (HttpURLConnection) getRequestOpenJournalPoli.openConnection();
             conection.setRequestMethod("GET");
-            //conection.setConnectTimeout(5000);
+            conection.setConnectTimeout(1000);
 
             responseCode = conection.getResponseCode();
             respuesta = null;
@@ -175,7 +175,7 @@ public class loginUsuario extends HttpServlet {
 
             conection = (HttpURLConnection) getRequestCatalogos.openConnection();
             conection.setRequestMethod("GET");
-//            conection.setConnectTimeout(10000);
+            conection.setConnectTimeout(1000);
             responseCode = conection.getResponseCode();
             respuesta = null;
             if (responseCode == HttpURLConnection.HTTP_OK) {

@@ -31,11 +31,21 @@ public class Conexion {
 
     public Conexion conectar() {
         try {
+
             Class.forName("org.postgresql.Driver");
-            String BaseDeDatos = "jdbc:postgresql://ec2-52-4-171-132.compute-1.amazonaws.com:5432/dan9j9ts7buek9";
+
+            //local
+//            String BaseDeDatos= "jdbc:postgresql://localhost:5432/postgres";
+//            conexion = (Connection) DriverManager.getConnection(BaseDeDatos, "postgres", "1234");
+//            heroku
+            String BaseDeDatos = "jdbc:postgresql://ec2-52-4-171-132.compute-1.amazonaws.com:5432/dan9j9ts7buek9?sslmode=require&&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory&&sslmode=verify-ca";
             conexion = (Connection) DriverManager.getConnection(BaseDeDatos, "budfdjcxzwhcuo", "ce1c5d8e9bc2c2b072d817fab8101c382031ad627d0b756142c29fd416e4f644");
 
+            //aws
+//            String BaseDeDatos = "jdbc:postgresql://database-1.c7e6wziczmru.us-east-2.rds.amazonaws.com:5432/postgres";
+//            conexion = (Connection) DriverManager.getConnection(BaseDeDatos, "postgres", "revista2020");
 
+//            jdbc:postgresql://<host>:<port>/<dbname>?sslmode=require&user=<username>&password=<password>
             if (conexion != null) {
                 System.out.println("conexion exitosa");
             } else {

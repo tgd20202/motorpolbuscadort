@@ -18,7 +18,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <link href="./css/index.css" rel="stylesheet">
         <link href="./css/main.css" rel="stylesheet">
-        <title>BuscadotT</title>
+        <title>BuscadorT</title>
     </head>
     <body>
         <%
@@ -72,7 +72,9 @@
             <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
 
                 <div class=col-md-12>
-                    <h1><%=mensaje != null ? mensaje : ""%></h1> 
+                    
+                    <h1><%=mensaje != null ? mensaje : ""%></h1>
+                       
 
                     <form id="form-list-client">
                         <h1 class="display-4">Open Journal System</h1>
@@ -132,7 +134,7 @@
 
                                 <%   }
                                         }
-                                       
+
                                     }
                                 } catch (Exception e) {%>
 
@@ -165,6 +167,10 @@
 </body>
 
 <script>
+    var alertList = document.querySelectorAll('.alert')
+    alertList.forEach(function (alert) {
+        new bootstrap.Alert(alert)
+    })
     function onSignIn(googleUser) {
         console.log('user is:' + JSON.stringify(googleUser.getBasicProfile()));
 
