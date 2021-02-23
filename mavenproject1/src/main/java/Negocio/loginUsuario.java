@@ -60,7 +60,7 @@ public class loginUsuario extends HttpServlet {
             ArrayList<urls> urlsOpenCatalogos = new ArrayList<urls>();
 
             String id = "", text = "", link = "";
-            URL getRequestAcademics = new URL("https://crawlerpoli-python.herokuapp.com/googleScholar/" + busqueda);
+            URL getRequestAcademics = new URL("https://testpoli-293416.rj.r.appspot.com/googleScholar/" + busqueda);
             String mensaje1 = "", mensaje2 = "", mensaje3 = "";
             String readLine = null;
             String[] names;
@@ -104,7 +104,7 @@ public class loginUsuario extends HttpServlet {
                 System.out.println("open journal antes:" + oJurnalSystem);
                 oJurnalSystem = oJurnalSystem.replace("https://", "mmm").replace("/", "aaa").replace("?", "bbb");
                 System.out.println("open journal a enviarse:" + oJurnalSystem);
-                URL getRequestOpenJournal = new URL("https://crawlerpoli-python.herokuapp.com/openJournal/" + oJurnalSystem);
+                URL getRequestOpenJournal = new URL("https://testpoli-293416.rj.r.appspot.com/openJournal/" + oJurnalSystem);
 
                 conection = (HttpURLConnection) getRequestOpenJournal.openConnection();
                 conection.setRequestMethod("GET");
@@ -138,7 +138,7 @@ public class loginUsuario extends HttpServlet {
 //--------------------------------------------------------
 //OJS del poli
 
-            URL getRequestOpenJournalPoli = new URL("https://crawlerpoli-python.herokuapp.com/openJournalPoli/" + busqueda);
+            URL getRequestOpenJournalPoli = new URL("https://testpoli-293416.rj.r.appspot.com/openJournalPoli/" + busqueda);
 
             conection = (HttpURLConnection) getRequestOpenJournalPoli.openConnection();
             conection.setRequestMethod("GET");
@@ -171,7 +171,7 @@ public class loginUsuario extends HttpServlet {
 
             //-------------------------------------------------------------------------------------
             // para catalogos
-            URL getRequestCatalogos = new URL("https://crawlerpoli-python.herokuapp.com/universidades/" + busqueda);
+            URL getRequestCatalogos = new URL("https://testpoli-293416.rj.r.appspot.com/universidades/" + busqueda);
 
             conection = (HttpURLConnection) getRequestCatalogos.openConnection();
             conection.setRequestMethod("GET");
